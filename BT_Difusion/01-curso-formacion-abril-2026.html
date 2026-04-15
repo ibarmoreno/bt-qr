@@ -9,14 +9,14 @@
       --bg: #e6edf7;
       --panel: #0f1a2f;
       --panel-2: #0b1426;
-      --accent: #0a2a66;        /* azul oscuro logo */
+      --accent: #0a2a66;
       --accent-2: #2d5db3;
-      --brand-light: #4da3ff;   /* azul claro logo */
+      --brand-light: #4da3ff;
       --text: #f4f7fb;
       --text-dark: #0b1222;
-      --muted: #6b7a99;
+      --muted: #8fa2c8;
       --danger: #c62828;
-      --line: rgba(0,0,0,0.08);
+      --line: rgba(255,255,255,0.08);
       --shadow: 0 20px 45px rgba(0,0,0,0.15);
     }
 
@@ -34,14 +34,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px; /* menor padding en mobile */
-      overflow-x: hidden; /* evita corte lateral */
+      padding: 12px;
+      overflow-x: hidden;
     }
 
     .card {
       width: 100%;
       max-width: 1080px;
-      min-height: auto; /* evitar overflow */
       background: #f4f7fb;
       border: 1px solid rgba(0,0,0,0.08);
       border-radius: 28px;
@@ -62,23 +61,26 @@
 
     .header {
       background: linear-gradient(90deg, var(--accent), #123b8f);
-      padding: 20px 20px;
+      padding: 20px;
       display: flex;
-      flex-wrap: wrap; /* evita que se salga */
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 16px;
+      min-width: 0;
     }
 
     .logo {
-      width: 72px; /* un poco más grande */
+      width: 72px;
       height: 72px;
       border-radius: 16px;
       display: flex;
@@ -86,13 +88,22 @@
       justify-content: center;
       background: rgba(255,255,255,0.12);
       padding: 8px;
+      flex: 0 0 auto;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
     }
 
     .brand-text h1 {
       margin: 0;
       font-size: 32px;
       letter-spacing: 1.5px;
-      color: #ffffff; /* color blanco para contraste */
+      color: #ffffff;
+      line-height: 1.05;
     }
 
     .brand-text p {
@@ -113,15 +124,17 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       white-space: nowrap;
+      line-height: 1.35;
     }
 
     .main {
       padding: 34px;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
       gap: 26px;
       position: relative;
       z-index: 1;
+      align-items: start;
     }
 
     .left,
@@ -129,13 +142,22 @@
       display: flex;
       flex-direction: column;
       gap: 22px;
+      min-width: 0;
+    }
+
+    .hero,
+    .class-box,
+    .alert-box,
+    .visual-box,
+    .contact-box {
+      background: linear-gradient(180deg, rgba(22,35,61,0.97), rgba(16,25,45,0.99));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      color: var(--text);
     }
 
     .hero {
-      color: var(--text);
-      background: linear-gradient(180deg, rgba(22,35,61,0.94), rgba(16,25,45,0.98));
-      border: 1px solid var(--line);
-      border-radius: 24px;
       padding: 28px;
     }
 
@@ -157,29 +179,27 @@
       background: linear-gradient(90deg, #ffffff, var(--brand-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero p {
       margin: 16px 0 0;
       font-size: 18px;
       color: var(--muted);
-      line-height: 1.5;
-      max-width: 90%;
+      line-height: 1.55;
+      max-width: 92%;
     }
 
     .classes {
       display: grid;
-      grid-template-columns: 1fr; /* solo una clase */
+      grid-template-columns: 1fr;
       gap: 20px;
     }
 
     .class-box {
       border-top: 3px solid var(--brand-light);
-      color: var(--text);
-      background: linear-gradient(180deg, rgba(16,25,45,0.98), rgba(14,21,37,0.98));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 24px;
+      padding-top: 20px;
     }
 
     .class-box h3 {
@@ -187,13 +207,22 @@
       font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 1px;
+      line-height: 1.2;
+    }
+
+    .class-date {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #8eb5ff;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .requirements {
       margin: 0 0 16px;
-      color: #cfe0ff;
+      color: #dce7fb;
       font-size: 14px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .section-title {
@@ -206,34 +235,28 @@
     }
 
     ul {
+      margin: 0;
+      padding-left: 0;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
       list-style: none;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 18px;
     }
 
     ul li::before {
       content: "•";
       color: var(--brand-light);
-      margin-right: 8px;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--text);
-      line-height: 1.55;
-      font-size: 15px;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
 
     li + li { margin-top: 6px; }
-
-    .alert-box,
-    .visual-box,
-    .contact-box {
-      color: var(--text);
-      background: linear-gradient(180deg, rgba(16,25,45,0.98), rgba(14,21,37,0.98));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 24px;
-    }
 
     .alert-box {
       border-left: 4px solid var(--danger);
@@ -252,9 +275,43 @@
     .contact-box p,
     .visual-box p {
       margin: 0;
-      color: #dce7fb; /* texto más claro y visible */
+      color: #dce7fb;
       line-height: 1.6;
       font-size: 15px;
+    }
+
+    .cost-box,
+    .cta-box {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(77,163,255,0.18);
+      border: 1px solid rgba(77,163,255,0.55);
+      text-align: center;
+    }
+
+    .cost-box .label,
+    .cta-box .label {
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #b8d4ff;
+    }
+
+    .cost-box .value,
+    .cta-box .value {
+      font-size: 26px;
+      font-weight: 700;
+      margin-top: 6px;
+      color: #4da3ff;
+      text-shadow: 0 0 8px rgba(77,163,255,0.35);
+    }
+
+    .note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #8eb5ff;
+      line-height: 1.55;
     }
 
     .visual {
@@ -273,7 +330,17 @@
       display: flex;
       align-items: end;
       justify-content: center;
-      padding-bottom: 28px;
+      padding: 0 18px 28px;
+    }
+
+    .visual .watermark {
+      position: absolute;
+      width: 180px;
+      opacity: 0.08;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
     }
 
     .visual .label {
@@ -298,6 +365,7 @@
       padding: 12px 18px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
     }
 
     .contact-list {
@@ -321,8 +389,8 @@
       justify-content: space-between;
       gap: 20px;
       align-items: center;
-      background: #0f1a2f; /* fondo oscuro para contraste */
-      color: #e6edf7; /* texto claro */
+      background: #0f1a2f;
+      color: #e6edf7;
       font-size: 14px;
       border-top: 1px solid rgba(255,255,255,0.08);
       position: relative;
@@ -334,39 +402,15 @@
       font-weight: 700;
     }
 
-    .footer strong {
-      color: #fff;
-      font-weight: 700;
-    }
-
-    @media (max-width: 900px) {
-      .card {
-        min-height: auto;
-      }
-
-      .header,
-      .footer,
+    @media (max-width: 1024px) {
       .main {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      .header,
-      .footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .main {
-        grid-template-columns: 1fr;
-      }
-
-      .classes {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+        gap: 18px;
+        padding: 24px;
       }
 
       .hero h2 {
-        font-size: 32px;
+        font-size: 44px;
       }
 
       .hero p {
@@ -374,13 +418,7 @@
       }
     }
 
-      .header,
-      .footer,
-      .main {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-
+    @media (max-width: 860px) {
       .header,
       .footer {
         flex-direction: column;
@@ -389,18 +427,95 @@
 
       .main {
         grid-template-columns: 1fr;
-      }
-
-      .classes {
-        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 18px;
       }
 
       .hero h2 {
         font-size: 36px;
       }
 
-      .hero p {
-        max-width: 100%;
+      .badge {
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 10px;
+      }
+
+      .card {
+        border-radius: 22px;
+      }
+
+      .header {
+        padding: 16px;
+      }
+
+      .brand {
+        gap: 12px;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+
+      .brand-text h1 {
+        font-size: 24px;
+      }
+
+      .brand-text p {
+        font-size: 12px;
+        letter-spacing: 1.2px;
+      }
+
+      .badge {
+        width: 100%;
+        text-align: left;
+        line-height: 1.4;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .hero,
+      .alert-box,
+      .visual-box,
+      .contact-box,
+      .class-box {
+        padding: 18px;
+        border-radius: 18px;
+      }
+
+      .hero h2 {
+        font-size: 30px;
+        line-height: 1.08;
+      }
+
+      .hero p,
+      .alert-box p,
+      .contact-box p,
+      .visual-box p,
+      ul,
+      .requirements {
+        font-size: 14px;
+      }
+
+      .visual {
+        min-height: 240px;
+      }
+
+      .visual .center-text {
+        font-size: 18px;
+        padding: 10px 14px;
+      }
+
+      .footer {
+        padding: 16px;
+        font-size: 12px;
       }
     }
   </style>
@@ -410,7 +525,7 @@
     <header class="header">
       <div class="brand">
         <div class="logo">
-          <img src="https://ibarmoreno.github.io/bt-qr/logo_BT.png" alt="Club BlueTactical" style="width:100%; height:100%; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));" />
+          <img src="https://ibarmoreno.github.io/bt-qr/logo_BT.png" alt="Club BlueTactical" />
         </div>
         <div class="brand-text">
           <h1>CLUB BLUETACTICAL</h1>
@@ -418,8 +533,8 @@
         </div>
       </div>
       <div class="badge">
-        Programa de formación inicial<br>
-        <span style="font-size:11px; letter-spacing:1px; opacity:0.8;">EMITIDO: Abril 20226</span>
+        PROGRAMA DE FORMACIÓN INICIAL<br>
+        <span style="font-size:11px; letter-spacing:1px; opacity:0.9;">EMITIDO: Abril 20226</span>
       </div>
     </header>
 
@@ -442,23 +557,20 @@
             sin experiencia previa o con conocimientos básicos, que buscan aprender de forma segura,
             estructurada y bajo estándares técnicos adecuados.
           </p>
-
-          <div style="margin-top:16px; padding:14px; border-radius:12px; background:rgba(45,93,179,0.15); border:1px solid rgba(45,93,179,0.4); text-align:center;">
-            <div style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#8eb5ff;">Costo de la actividad</div>
-            <div style="font-size:22px; font-weight:700; margin-top:6px; color:#ffffff;"><span style="color:#4da3ff; text-shadow:0 0 8px rgba(77,163,255,0.4);">GRATUITA</span></div>
+          <div class="cost-box">
+            <div class="label">Costo de la actividad</div>
+            <div class="value">GRATUITA</div>
           </div>
         </section>
 
         <section class="classes">
           <article class="class-box">
             <h3>Curso básico manejo de armas</h3>
-            <div style="margin-bottom:10px; font-size:13px; color:#8eb5ff; letter-spacing:1px; text-transform:uppercase;">Sábado 25 de abril · 16:00 hrs</div>
-
+            <div class="class-date">Sábado 25 de abril · 16:00 hrs</div>
             <p class="requirements">
               <strong>Requiere:</strong> arma, permiso de transporte o GLT (Guía de Libre Tránsito), kit de limpieza básico
               (en caso de poseerlo), portacargadores, 10 o más municiones, protección ocular y auditiva.
             </p>
-
             <div class="section-title">Contenidos</div>
             <ul>
               <li>Las 4 reglas básicas de seguridad.</li>
@@ -482,8 +594,7 @@
             La participación debe realizarse con equipamiento de seguridad personal y documentación vigente,
             conforme a las exigencias aplicables y a las normas internas del club.
           </p>
-
-          <div style="margin-top:14px; font-size:13px; color:#8eb5ff; line-height:1.5;">
+          <div class="note">
             <strong>Nota:</strong> GLT corresponde a Guía de Libre Tránsito, documento exigido para el transporte legal de armas según normativa vigente en Chile.
           </div>
         </section>
@@ -494,7 +605,7 @@
             Seguridad, disciplina, técnica, control del arma y progresión formativa desde los fundamentos.
           </p>
           <div class="visual">
-            <img src="https://ibarmoreno.github.io/bt-qr/logo_BT.png" alt="BT watermark" style="position:absolute; inset:auto; width:180px; opacity:0.08; top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;" />
+            <img class="watermark" src="https://ibarmoreno.github.io/bt-qr/logo_BT.png" alt="Marca de agua Club BlueTactical" />
             <div class="label">Club BlueTactical</div>
             <div class="center-text">SEGURIDAD · TÉCNICA · DISCIPLINA</div>
           </div>
@@ -505,12 +616,10 @@
           <p>
             Durante la formación se podrán orientar dudas sobre equipamiento básico y adquisición de accesorios.
           </p>
-
-          <div style="margin-top:16px; padding:14px; border-radius:12px; background:rgba(77,163,255,0.2); border:1px solid rgba(77,163,255,0.6); text-align:center;">
-            <div style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#8eb5ff;">Inscripciones abiertas</div>
-            <div style="font-size:20px; font-weight:700; margin-top:6px; color:#ffffff;">CUPOS LIMITADOS</div>
+          <div class="cta-box">
+            <div class="label">Inscripciones abiertas</div>
+            <div class="value">CUPOS LIMITADOS</div>
           </div>
-
           <div class="contact-list">
             <div class="contact-item">Bolsos, portacargadores, protectores, holsters y cinturones.</div>
             <div class="contact-item">Kits de limpieza y elementos de apoyo para práctica segura.</div>
@@ -522,7 +631,7 @@
 
     <footer class="footer">
       <div><strong>CLUB BLUETACTICAL</strong> · Información oficial para difusión institucional</div>
-      <div>Cumplimiento normativo y formación responsable</div>
+      <div>Formación responsable bajo normativa vigente en Chile</div>
     </footer>
   </section>
 </body>
