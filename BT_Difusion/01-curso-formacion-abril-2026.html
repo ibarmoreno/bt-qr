@@ -34,14 +34,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 12px; /* menor padding en mobile */
+      overflow-x: hidden; /* evita corte lateral */
     }
 
     .card {
       width: 100%;
       max-width: 1080px;
-      min-height: 1080px;
-      background: #f4f7fb; /* tarjeta principal clara */
+      min-height: auto; /* evitar overflow */
+      background: #f4f7fb;
       border: 1px solid rgba(0,0,0,0.08);
       border-radius: 28px;
       overflow: hidden;
@@ -61,10 +62,12 @@
 
     .header {
       background: linear-gradient(90deg, var(--accent), #123b8f);
-      padding: 26px 34px;
+      padding: 20px 20px;
       display: flex;
+      flex-wrap: wrap; /* evita que se salga */
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
@@ -340,6 +343,36 @@
       .card {
         min-height: auto;
       }
+
+      .header,
+      .footer,
+      .main {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .header,
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .classes {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h2 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        max-width: 100%;
+      }
+    }
 
       .header,
       .footer,
