@@ -383,6 +383,26 @@
       color: #dce7fb;
     }
 
+    .view-counter {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 20;
+      background: rgba(11,18,34,0.88);
+      color: #ffffff;
+      border: 1px solid rgba(77,163,255,0.35);
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 12px;
+      line-height: 1.35;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+      backdrop-filter: blur(6px);
+    }
+
+    .view-counter strong {
+      color: var(--brand-light);
+    }
+
     .footer {
       padding: 18px 34px 28px;
       display: flex;
@@ -513,6 +533,13 @@
         padding: 10px 14px;
       }
 
+      .view-counter {
+        right: 10px;
+        bottom: 10px;
+        font-size: 11px;
+        padding: 7px 10px;
+      }
+
       .footer {
         padding: 16px;
         font-size: 12px;
@@ -634,5 +661,36 @@
       <div>Formación responsable bajo normativa vigente en Chile</div>
     </footer>
   </section>
+
+  <div id="viewCounter" class="view-counter" aria-live="polite">Cargando visitas...</div>
+
+  <script>
+    (function () {
+      const counterEl = document.getElementById('viewCounter');
+      const storageKeyTotal = 'bt_triptico_total_visitas';
+      const storageKeySession = 'bt_triptico_sesion_registrada';
+
+      function renderCounter(total, firstVisitInSession) {
+        const extra = firstVisitInSession ? ' · nueva visita en este equipo' : ' · sesión ya contada';
+        counterEl.innerHTML = '<strong>Visitas:</strong> ' + total + extra;
+      }
+
+      try {
+        const currentTotal = Number(localStorage.getItem(storageKeyTotal) || '0');
+        const sessionAlreadyCounted = sessionStorage.getItem(storageKeySession) === '1';
+
+        let nextTotal = currentTotal;
+        if (!sessionAlreadyCounted) {
+          nextTotal += 1;
+          localStorage.setItem(storageKeyTotal, String(nextTotal));
+          sessionStorage.setItem(storageKeySession, '1');
+        }
+
+        renderCounter(nextTotal, !sessionAlreadyCounted);
+      } catch (error) {
+        counterEl.innerHTML = '<strong>Visitas:</strong> contador no disponible en este navegador';
+      }
+    })();
+  </script>
 </body>
 </html>
